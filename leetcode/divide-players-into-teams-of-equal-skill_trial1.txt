@@ -1,0 +1,15 @@
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+        chem = 0
+        skill.sort()
+        i, j = 0, len(skill) - 1
+        runskill = skill[i] + skill[j]
+        while i < j:
+            curskill = skill[i] + skill[j]
+            if runskill != curskill:
+                return -1
+            chem += skill[i] * skill[j]
+            i += 1
+            j -= 1
+        return chem
+        
