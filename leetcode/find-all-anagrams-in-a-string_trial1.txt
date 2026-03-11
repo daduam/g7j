@@ -1,0 +1,15 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        ans = []
+        k = len(p)
+        pfreq = Counter(p)
+        sfreq = Counter(s[:k])
+        if sfreq == pfreq:
+            ans.append(0)
+        for i in range(1, len(s)-k+1):
+            sfreq[s[i-1]] -= 1
+            sfreq[s[i+k-1]] += 1
+            if sfreq == pfreq:
+                ans.append(i)
+        return ans
+        
