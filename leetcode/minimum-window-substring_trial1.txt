@@ -1,0 +1,23 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        n = len(s)
+        ch2freq = Counter(t)
+        ans = ''
+        want, left, minlen = 0, 0, float('inf')
+        for right in range(n):
+            ch = s[right]
+            if ch in ch2freq:
+                ch2freq[ch] -= 1
+                if ch2freq[ch] == 0:
+                    want += 1
+            while want == len(ch2freq):
+                lch = s[left]    
+                if lch in ch2freq:
+                    if ch2freq[lch] == 0:
+                        want -= 1
+                    ch2freq[lch] += 1
+                if right - left + 1 < minlen:
+                    minlen = right - left + 1
+                    ans = s[left:right+1]
+                left += 1
+        return ans
