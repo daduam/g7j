@@ -1,0 +1,16 @@
+class Solution:
+    def countGood(self, nums: List[int], k: int) -> int:
+        ans, left, npairs = 0, 0, 0
+        freq = defaultdict(int)
+        for right in range(len(nums)):
+            num = nums[right]
+            freq[num] += 1
+            npairs += freq[num] - 1
+            while npairs >= k:
+                lnum = nums[left]
+                freq[lnum] -= 1
+                npairs -= freq[lnum]
+                left += 1
+                ans += len(nums) - right
+        return ans
+        
