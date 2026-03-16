@@ -1,0 +1,11 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ch2freq = defaultdict(int)
+        ans, left = 0, 0
+        for right in range(len(s)):
+            ch2freq[s[right]] += 1
+            while ch2freq[s[right]] > 1:
+                ch2freq[s[left]] -= 1
+                left += 1
+            ans = max(ans, right - left + 1)
+        return ans
