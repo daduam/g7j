@@ -1,0 +1,16 @@
+class Solution:
+    def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
+        q = deque()
+        ans = 0
+        for i in range(len(tickets)):
+            q.append(i)
+        while q:
+            i = q.popleft()
+            tickets[i] -= 1
+            ans += 1
+            if tickets[i] != 0:
+                q.append(i)
+            elif i == k:
+                break
+        return ans
+        
