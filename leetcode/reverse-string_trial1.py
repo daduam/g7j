@@ -3,9 +3,10 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        l, r = 0, len(s) - 1
-        while l <= r:
-            s[l], s[r] = s[r], s[l]
-            l += 1
-            r -= 1
-        
+        self.reverseStringHelper(s, 0, len(s)-1)
+
+    def reverseStringHelper(self, s: List[str], left: int, right: int) -> None:
+        if left >= right:
+            return
+        s[left], s[right] = s[right], s[left]
+        return self.reverseStringHelper(s, left + 1, right - 1)
