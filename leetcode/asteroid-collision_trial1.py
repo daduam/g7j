@@ -6,11 +6,9 @@ class Solution:
             while st and st[-1] > 0 and asteroid < 0:
                 if abs(asteroid) > st[-1]:
                     st.pop()
-                elif abs(asteroid) == st[-1]:
-                    st.pop()
-                    shouldappend = False
-                    break
                 else:
+                    if abs(asteroid) == st[-1]:
+                        st.pop()
                     shouldappend = False
                     break
             if shouldappend:
