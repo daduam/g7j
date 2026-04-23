@@ -6,11 +6,11 @@ class Solution:
             mid = lo + (hi - lo) // 2
             if target < matrix[mid][0]:
                 hi = mid - 1
-            elif matrix[mid][0] <= target <= matrix[mid][-1]:
+            elif target > matrix[mid][-1]:
+                lo = mid + 1
+            else:
                 row = mid
                 break
-            else:
-                lo = mid + 1
         
         if row == -1:
             return False
