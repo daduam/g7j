@@ -1,0 +1,12 @@
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        ans = float('inf')
+        lo, hi = 0, len(letters)-1
+        while lo <= hi:
+            mid = lo + (hi - lo) // 2
+            if letters[mid] > target:
+                ans = min(ans, mid)
+                hi = mid - 1
+            else:
+                lo = mid + 1
+        return letters[0 if ans == float('inf') else ans]
